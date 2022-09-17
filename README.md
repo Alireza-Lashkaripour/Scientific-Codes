@@ -1,2 +1,2 @@
 # Scintific-Codes
-Theoretical and Physical Chemistry useful codes.
+Useful codes in Theoritical and Physical Chemistry. 
