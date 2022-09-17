@@ -1,0 +1,44 @@
+x = input('Enter The X axis(inside brakets): ');
+display(x)
+y = input('Enter The Y axis(inside brakets): ');
+display(y)
+
+Sum_of_x = sum(x);
+display(Sum_of_x)
+Sum_of_y = sum(y);
+display(Sum_of_y)
+
+Mean_of_x = mean(x);
+display(Mean_of_x)
+Mean_of_y = mean(y);
+display(Mean_of_y)
+
+X_Mx = x - Mean_of_x;
+display(X_Mx)
+Y_My = y - Mean_of_y;
+display(Y_My)
+
+Squares = (X_Mx).^2;
+display(Squares)
+
+Sum_of_squares = sum(Squares);
+display(Sum_of_squares)
+
+Products = (X_Mx) .* (Y_My);
+display(Products)
+
+Sum_of_products = sum(Products);
+display(Sum_of_products)
+
+b = (Sum_of_squares)/(Sum_of_products);
+display(b)
+
+a = (Mean_of_x) - (b * (Mean_of_y));
+display(a)
+
+display('Y = bX + a')
+plot(x,y)
+xlabel('x')
+ylabel('y')
+
+%Alireza Lashkaripour
