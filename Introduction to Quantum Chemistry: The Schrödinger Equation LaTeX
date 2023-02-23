@@ -1,0 +1,787 @@
+\documentclass[14pt]{article}
+\usepackage[utf8]{inputenc}
+
+
+\title{Introduction to Quantum Chemistry:\\The Schrödinger Equation}
+\author{B.S.Alireza Lashkaripour}
+\date{March 2021}
+
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\graphicspath{ {./Youtube/} }
+\usepackage[rightcaption]{sidecap}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{chemformula}
+\usepackage[version=3]{mhchem}
+\usepackage[version=4]{mhchem}
+\usepackage{mathtools}
+\usepackage{latexsym}
+
+
+
+\begin{document}
+
+\maketitle
+\section{Quantum Chemistry}
+In the late seventeenth century, Isaac Newton discovered \textbf{classical mechanics}, the laws of
+motion of macroscopic objects. In the early twentieth century, physicists found that classical
+mechanics does not correctly describe the behavior of very small particles such as the
+electrons and nuclei of atoms and molecules. The behavior of such particles is described
+by a set of laws called \textbf{quantum mechanics}. \\ \par
+\textbf{Quantum Chemistry} applies quantum mechanics to problems in chemistry. The
+influence of quantum chemistry is evident in all branches of chemistry. Physical chemists
+use quantum mechanics to calculate (with the aid of statistical mechanics) thermodynamic
+properties (for example, entropy, heat capacity) of gases; to interpret molecular
+spectra, thereby allowing experimental determination of molecular properties (for example,
+molecular geometries, dipole moments, barriers to internal rotation, energy differences
+between conformational isomers); to calculate molecular properties theoretically; to
+calculate properties of transition states in chemical reactions, thereby allowing estimation
+of rate constants; to understand intermolecular forces; and to deal with bonding in solids. \\ \par
+Quantum mechanics determines the properties of nanomaterials (objects with at least
+one dimension in the range 1 to 100 nm), and calculational methods to deal with nanomaterials
+are being developed. When one or more dimensions of a material fall below
+100 nm (and especially below 20 nm), dramatic changes in the optical, electronic, chemical,
+and other properties from those of the bulk material can occur. A semiconductor or
+metal object with one dimension in the 1 to 100 nm range is called a \emph{quantum well}; one
+with two dimensions in this range is a \emph{quantum wire}; and one with all three dimensions
+in this range is a \emph{quantum dot}. The word \emph{quantum} in these names indicates the key role
+played by quantum mechanics in determining the properties of such materials.
+\section{Historical Background of Quantum Mechanics}
+The development of quantum mechanics began in 1900 with Planck’s study of the light
+emitted by heated solids, so we start by discussing the nature of light.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=3cm, height=4cm]{Planckin1933}
+\caption*{\small{Planck in 1933}}
+\label{fig:Planckin1933}
+\end{figure}
+
+\par In 1803, Thomas Young gave convincing evidence for the wave nature of light by
+observing diffraction and interference when light went through two adjacent pinholes.
+(\emph{Diffraction} is the bending of a wave around an obstacle. \emph{Interference} is the combining of
+two waves of the same frequency to give a wave whose disturbance at each point in space
+is the algebraic or vector sum of the disturbances at that point resulting from each interfering
+wave. See any first-year physics text.)
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=13cm, height=6cm]{Interferenceelectronsdoubleslits}
+\caption*{\small{Interference electrons double slits}}
+\label{fig:Interferenceelectronsdoubleslits}
+\end{figure}
+
+\clearpage
+\begin{wrapfigure}{r}{0.25\textwidth} %this figure will be at the right
+    \centering
+    \includegraphics[width=0.25\textwidth]{JamesClerkMaxwell}
+\end{wrapfigure}
+
+\par
+In 1864, James Clerk Maxwell published four equations, known as Maxwell’s equations,
+which unified the laws of electricity and magnetism. Maxwell’s equations predicted
+that an accelerated electric charge would radiate energy in the form of electromagnetic
+waves consisting of oscillating electric and magnetic fields. The speed predicted by Maxwell’s
+equations for these waves turned out to be the same as the experimentally measured
+speed of light. Maxwell concluded that light is an electromagnetic wave.
+
+\begin{wrapfigure}{l}{0.25\textwidth} %this figure will be at the left
+    \centering
+    \includegraphics[width=0.25\textwidth]{HeinrichRudolfHertz}
+\end{wrapfigure}
+
+
+\par
+In 1888, Heinrich Hertz detected radio waves produced by accelerated electric
+charges in a spark, as predicted by Maxwell’s equations. This convinced physicists that
+light is indeed an electromagnetic wave.
+All electromagnetic waves travel at speed \emph{c} \(= 2.998 \times 10^8 m/s\) in vacuum. The
+frequency n and wavelength l of an electromagnetic wave are related by
+\begin{equation}
+    \lambda\nu = \emph{c}
+\end{equation}
+\par
+Various conventional labels are applied to electromagnetic waves depending on
+their frequency. In order of increasing frequency are radio waves, microwaves, infrared
+radiation, visible light, ultraviolet radiation, X-rays, and gamma rays. We shall use the
+term \textbf{light} to denote any kind of electromagnetic radiation. Wavelengths of visible and
+ultraviolet radiation were formerly given in \textbf{angstroms} (Å) and are now given in \textbf{nanometers}
+(nm):
+\begin{equation}
+    1 nm = 10^{-9} m,\hspace{1cm}1 Å = 10^{-10} m = 0.1 nm
+\end{equation}
+
+
+\begin{wrapfigure}{r}{0.25\textwidth} %this figure will be at the right
+    \centering
+    \includegraphics[width=0.25\textwidth]{Blackbodyrealization}
+\end{wrapfigure}
+\par
+In the 1890s, physicists measured the intensity of light at various frequencies
+emitted
+by a heated blackbody at a fixed temperature, and did these measurements at several
+temperatures. A \emph{blackbody} is an object that absorbs all light falling on it. A good approximation
+to a blackbody is a cavity with a tiny hole.
+\par
+In 1896, the physicist Wien
+proposed the following equation for the dependence of blackbody radiation on light frequency
+and blackbody temperature:\(I = {a\nu^{3}}/e^{{b{\nu}}/{T}}\), where \emph{a} and \emph{b} are empirical constants,
+and \(Id\nu\) is the energy with frequency in the range \(\nu\) to \(\nu + d\nu\) radiated per unit time
+and per unit surface area by a blackbody, with \(d\nu\) being an infinitesimal frequency range.
+Wien’s formula gave a good fit to the blackbody radiation data available in 1896, but his
+theoretical arguments for the formula were considered unsatisfactory.
+
+\clearpage
+\par
+In 1899–1900, measurements of blackbody radiation were extended to lower frequencies
+than previously measured, and the low-frequency data showed significant deviations
+from Wien’s formula. These deviations led the physicist Max Planck to propose in October
+1900 the following formula: \(I = {a\nu^{3}}/({e^{{b{\nu}}/{T}}-1)}\), which was found to give an excellent
+fit to the data at all frequencies.
+
+\begin{wrapfigure}{r}{0.25\textwidth} %this figure will be at the right
+    \centering
+    \includegraphics[width=0.25\textwidth]{Planckin1901}
+    \caption*{\tiny Planck in 1901}
+\end{wrapfigure}
+
+\par
+Having proposed this formula, Planck sought a theoretical justification for it. In
+December 1900, he presented a theoretical derivation of his equation to the German Physical
+Society. Planck assumed the radiation emitters and absorbers in the blackbody to be
+harmonically oscillating electric charges (“resonators”) in equilibrium with electromagnetic
+radiation in a cavity. He assumed that the total energy of those resonators whose frequency
+is \(\nu\) consisted of \(N\) indivisible “energy elements,” each of magnitude \(h\nu\), where \(N\)
+is an integer and \(h\) (\textbf{Planck’s constant}) was a new constant in physics. Planck distributed 
+these energy elements among the resonators. In effect, this restricted the energy of each
+resonator to be a whole-number multiple of \(h\nu\) (although Planck did not explicitly say
+this). Thus the energy of each resonator was \textbf{quantized}, meaning that only certain discrete
+values were allowed for a resonator energy. Planck’s theory showed that \(a={2\pi{h}}/{c^2}\) and
+\(b = h/k\), where \(k\) is Boltzmann’s constant. By fitting the experimental blackbody curves,
+Planck found \(h=6.6\times 10^{-34}j.s\).
+
+\par
+The second application of energy quantization was to the \emph{photoelectric effect}. In the photoelectric
+effect, light shining on a metal causes emission of electrons. The energy of a wave
+is proportional to its intensity and is not related to its frequency, so the electromagnetic-
+wave
+picture of light leads one to expect that the kinetic energy of an emitted photoelectron would
+increase as the light intensity increases but would not change as the light frequency changes.
+Instead, one observes that the kinetic energy of an emitted electron is independent of the
+light’s intensity but increases as the light’s frequency increases.
+\par
+
+\begin{wrapfigure}{l}{0.25\textwidth} %this figure will be at the left
+    \centering
+    \includegraphics[width=0.25\textwidth]{Einstein.jpg}
+\end{wrapfigure}
+In 1905, Einstein showed that these observations could be explained by regarding light
+as composed of particlelike entities (called \textbf{photons}), with each photon having an energy \\
+\begin{equation}
+    E_{photon}= h\nu
+\end{equation}
+When an electron in the metal absorbs a photon, part of the absorbed photon energy is
+used to overcome the forces holding the electron in the metal; the remainder appears as
+kinetic energy of the electron after it has left the metal. Conservation of energy gives
+\(h\nu = \Phi + T\), where \(\Phi\) is the minimum energy needed by an electron to escape the metal
+(the metal’s \emph{work function}), and T is the maximum kinetic energy of an emitted electron. and \(T\) is the maximum kinetic energy of an emitted electron.
+An increase in the light’s frequency \(\nu\) increases the photon energy and hence increases the
+kinetic energy of the emitted electron. An increase in light intensity at fixed frequency increases
+the rate at which photons strike the metal and hence increases the rate of emission
+of electrons, but does not change the kinetic energy of each emitted electron.
+\par
+The photoelectric effect shows that light can exhibit particlelike behavior in addition
+to the wavelike behavior it shows in diffraction experiments.
+\par
+In 1907, Einstein applied energy quantization to the vibrations of atoms in a solid element,
+assuming that each atom’s vibrational energy in each direction \((x,y,z)\) is restricted
+to be an integer times \(h\nu_{vib}\), where the vibrational frequency \(\nu_{vib}\) is characteristic of the
+element.
+Using statistical mechanics, Einstein derived an expression for the constantvolume
+heat capacity \(C_{v}\) of the solid. Einstein’s equation agreed fairly well with known
+\(C_{v}\)-versus-temperature data for diamond.
+\par
+In the late nineteenth century, investigations of electric discharge tubes and natural
+radioactivity showed that atoms and molecules are composed of charged particles.
+Electrons
+have a negative charge. The proton has a positive charge equal in magnitude
+but opposite in sign to the electron charge and is 1836 times as heavy as the electron.
+The third constituent of atoms, the neutron (discovered in 1932), is uncharged and slightly
+heavier than the proton.
+\par
+Starting in 1909, Rutherford, Geiger, and Marsden repeatedly passed a beam of alpha
+particles through a thin metal foil and observed the deflections of the particles by allowing
+them to fall on a fluorescent screen. Alpha particles are positively charged helium nuclei
+obtained from natural radioactive decay. Most of the alpha particles passed through the
+foil essentially undeflected, but, surprisingly, a few underwent large deflections, some being
+deflected backward. To get large deflections, one needs a very close approach between
+the charges, so that the Coulombic repulsive force is great. If the positive charge were
+spread throughout the atom (as J. J. Thomson had proposed in 1904), once the high-energy
+alpha particle penetrated the atom, the repulsive force would fall off, becoming zero at the
+center of the atom, according to classical electrostatics. Hence Rutherford concluded that
+such large deflections could occur only if the positive charge were concentrated in a tiny,
+heavy nucleus.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=8cm, height=3cm]{Rutherford'sGoldFoilExperiment}
+\caption*{\tiny{Rutherford's Gold Foil Experiment}}
+\label{fig:Planckin1933}
+\end{figure}
+
+\clearpage
+\par
+An atom contains a tiny (\(1-^{-13}\) to \(10^{-12}\) cm radius), heavy nucleus consisting of neutrons
+and \(Z\) protons, where \(Z\) is the atomic number. Outside the nucleus there are \(Z\) electrons.
+The charged particles interact according to Coulomb’s law. (The nucleons are held
+together in the nucleus by strong, short-range nuclear forces, which will not concern us.)
+The radius of an atom is about one angstrom, as shown, for example, by results from the
+kinetic theory of gases. Molecules have more than one nucleus.
+
+\begin{wrapfigure}{r}{0.25\textwidth} %this figure will be at the right
+    \centering
+    \includegraphics[width=0.25\textwidth]{Rutherford’smodeloftheatom}
+\end{wrapfigure}
+
+\par
+In 1911, Rutherford proposed his planetary model of the atom in which the electrons
+revolved about the nucleus in various orbits, just as the planets revolve about the
+sun. However, there is a fundamental difficulty with this model. According to classical
+electromagnetic
+theory, an accelerated charged particle radiates energy in the form of
+electromagnetic (light) waves. An electron circling the nucleus at constant speed is being
+accelerated, since the direction of its velocity vector is continually changing. Hence the
+electrons in the Rutherford model should continually lose energy by radiation and therefore
+would spiral toward the nucleus. Thus, according to classical (nineteenth-century)
+physics, the Rutherford atom is unstable and would collapse.
+\par
+\begin{wrapfigure}{l}{0.25\textwidth} %this figure will be at the left
+    \centering
+    \includegraphics[width=0.25\textwidth]{Youtube/Bohrmodelpng.png}
+\end{wrapfigure}
+A possible way out of this difficulty was proposed by Niels Bohr in 1913, when he applied
+the concept of quantization of energy to the hydrogen atom. Bohr assumed that the
+energy of the electron in a hydrogen atom was quantized, with the electron constrained
+to move only on one of a number of allowed circles. When an electron makes a transition
+from one Bohr orbit to another, a photon of light whose frequency \(\nu\) satisfies
+\begin{equation}
+    E_{upper}-E_{lower}=h\nu
+\end{equation}
+is absorbed or emitted, where \(E_{upper}\) and \(E_{lower}\) are the energies of the upper and lower
+states (conservation of energy). With the assumption that an electron making a transition
+from a free (ionized) state to one of the bound orbits emits a photon whose frequency
+is an integral multiple of one-half the classical frequency of revolution of the electron
+in the bound orbit, Bohr used classical mechanics to derive a formula for the hydrogenatom
+energy levels. Using (4), he got agreement with the observed hydrogen spectrum.
+However, attempts to fit the helium spectrum using the Bohr theory failed. Moreover, the
+theory could not account for chemical bonds in molecules.
+\par
+The failure of the Bohr model arises from the use of classical mechanics to describe
+the electronic motions in atoms. The evidence of atomic spectra, which show discrete
+frequencies, indicates that only certain energies of motion are allowed; the electronic energy
+is quantized. However, classical mechanics allows a continuous range of energies.
+Quantization does occur in wave motion—for example, the fundamental and overtone frequencies
+of a violin string. Hence Louis de Broglie suggested in 1923 that the motion of
+electrons might have a wave aspect; that an electron of mass \(m\) and speed \(\nu\) would have a
+wavelength
+\begin{equation}
+    \lambda=\frac{h}{m\nu}=\frac{h}{p}
+\end{equation}
+
+\begin{wrapfigure}{r}{0.25\textwidth} %this figure will be at the right
+    \centering
+    \includegraphics[width=0.25\textwidth]{Youtube/DeBroglie.jpg}
+    \caption*{\tiny{De Broglie}}
+\end{wrapfigure}
+
+associated with it, where \(p\) is the linear momentum. De Broglie arrived at Eq. (5) by
+reasoning in analogy with photons. The energy of a photon can be expressed, according
+to Einstein’s special theory of relativity, as \nolinebreak{\(E = pc\)}, where c is the speed of light and \(p\) is
+the photon’s momentum. Using \(E_{photon} = h\nu\), we get \(pc = h\nu = hc/\lambda\) and \(\lambda = h/p\) for
+a photon traveling at speed \(c\). Equation (5) is the corresponding equation for an electron.
+\par
+
+In 1927, Davisson and Germer \nolinebreak{experimentally} \nolinebreak{confirmed} de Broglie’s hypothesis by
+reflecting electrons from metals and observing diffraction effects. In 1932, Stern observed
+the same effects with helium atoms and hydrogen molecules, thus verifying that the wave
+effects are not peculiar to electrons, but result from some general law of motion for microscopic
+particles. Diffraction and interference have been observed with molecules as
+large as {\ce{C_{48}}\ce{H_{26}}\ce{F_{24}}\ce{N_{8}}\ce{O_{8}}} passing through a diffraction grating.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=4cm, height=4cm]{Youtube/imgsrv.png}
+\caption*{{\tiny{\ce{C_{48}H_{26}F_{24}N_{8}O_{8}}}}}
+\label{fig:Planckin1933}
+\end{figure}
+\par
+Thus electrons behave in some respects like particles and in other respects like waves.
+We are faced with the apparently contradictory “wave–particle duality” of matter (and of
+light). How can an electron be both a particle, which is a localized entity, and a wave,
+which is nonlocalized? The answer is that an electron is neither a wave nor a particle, but
+something else. An accurate pictorial description of an electron’s behavior is impossible using the wave or particle concept of classical physics. The concepts of classical physics
+have been developed from experience in the macroscopic world and do not properly
+describe the microscopic world. Evolution has shaped the human brain to allow it to understand
+and deal effectively with macroscopic phenomena. The human nervous system
+was not developed to deal with phenomena at the atomic and molecular level, so it is not
+surprising if we cannot fully understand such phenomena.
+Although both photons and electrons show an apparent duality, they are not the same
+kinds of entities. Photons travel at speed \(c\) in vacuum and have zero rest mass; electrons
+always have \(\nu < c\) and a nonzero rest mass. Photons must always be treated relativistically,
+but electrons whose speed is much less than \(c\) can be treated nonrelativistically.
+
+\section{The Uncertainty Principle}
+
+Let us consider what effect the wave–particle duality has on attempts to measure simultaneously
+the \(x\) coordinate and the \(x\) component of linear momentum of a microscopic particle.
+We start with a beam of particles with momentum \(p\), traveling in the \(y\) direction, and
+we let the beam fall on a narrow slit. Behind this slit is a photographic plate. See Fig. 1.
+\par
+Particles that pass through the slit of width \(w\) have an uncertainty \(w\) in their \(x\) coordinate
+at the time of going through the slit. Calling this spread in \(x\) values \(\Delta x\), we have
+\(\Delta x = w\).
+\par
+Since microscopic particles have wave properties, they are diffracted by the slit producing
+(as would a light beam) a diffraction pattern on the plate. The height of the graph
+in Fig. 1 is a measure of the number of particles reaching a given point. The diffraction
+pattern shows that when the particles were diffracted by the slit, their direction of motion
+was changed so that part of their momentum was transferred to the \(x\) direction. The \(x\)
+component of momentum \(p_{x}\) equals the projection of the momentum vector \textbf{p} in the \(x\) direction.
+A particle deflected upward by an angle a has \(p_{x} = p\sin\alpha\). A particle deflected
+downward by a has \(p_{x} = -p\sin\alpha\). Since most of the particles undergo deflections in the
+range \(-\alpha\) to \(\alpha\), where a is the angle to the first minimum in the diffraction pattern, we
+shall take one-half the spread of momentum values in the central diffraction peak as a
+measure of the uncertainty \(\Delta{p_{x}}\) in the \(x\) component of momentum: \(\Delta{p_{x}} = p\sin\alpha\).
+\par
+Hence at the slit, where the measurement is made,
+\begin{equation}
+    \Delta{x}\Delta{p_{x}} = pw\sin\alpha
+\end{equation}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=6cm, height=3cm]{Youtube/Capture1.PNG}
+\caption{{Diffraction of electrons by a slit.}}
+\label{fig:Planckin1933}
+\end{figure}
+
+\clearpage
+\par
+The angle a at which the first diffraction minimum occurs is readily calculated.
+The condition for the first minimum is that the difference in the distances traveled by
+particles passing through the slit at its upper edge and particles passing through the center
+of the slit should be equal to \(\frac{1}{2}\lambda\), where \(\lambda\) is the wavelength of the associated wave.
+Waves originating from the top of the slit are then exactly out of phase with waves originating
+from the center of the slit, and they cancel each other. Waves originating from
+a point in the slit at a distance \(d\) below the slit midpoint cancel with waves originating
+at a distance \(d\) below the top of the slit.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=6cm, height=3cm]{Youtube/Capture2.PNG}
+\caption{Calculation of first diffraction minimum.}
+\label{fig:Planckin1933}
+\end{figure}
+
+Drawing \(AC\) in Fig. 2 so that \(AD = CD\), we
+have the difference in path length as \(BC\). The distance from the slit to the screen is
+large compared with the slit width. Hence \(AD\) and \(BD\) are nearly parallel. This makes
+the angle \(ACB\) essentially
+a right angle, and so angle \(BAC = \alpha\). The path difference
+\(BC\) is then \(\frac{1}{2}w \sin\alpha\). Setting \(BC\) equal to \(\frac{1}{2}\lambda\), we have \(w\) sin \(\alpha = \lambda\), and Eq. (6) becomes
+\(\Delta{x}\Delta{p_{x}} = p\lambda\). The wavelength \(\lambda\) is given by the de Broglie relation \(\lambda = h/p\), so
+\(\Delta{x}\Delta{p_{x}} = h\). Since the uncertainties have not been precisely defined, the equality sign
+is not really justified. Instead we write
+\begin{equation}
+    \Delta{x}\Delta{p_{x}} \approx h
+\end{equation}
+indicating that the product of the uncertainties in \(x\) and \(p_{x}\) is of the order of magnitude of
+Planck’s constant.
+\par
+\begin{wrapfigure}{r}{0.25\textwidth} %this figure will be at the right
+    \centering
+    \includegraphics[width=0.25\textwidth]{Youtube/werner-heisenberg-dumnezeu1.png}
+\end{wrapfigure}
+Although we have demonstrated (7) for only one experimental setup, its validity
+is general. No matter what attempts are made, the wave–particle duality of microscopic
+“particles” imposes a limit on our ability to measure simultaneously the position and momentum
+of such particles. The more precisely we determine the position, the less accurate
+is our determination of momentum. (In Fig. 1, \(\sin\alpha = \lambda/w\), so narrowing the slit increases
+the spread of the diffraction pattern.) This limitation is the \textbf{uncertainty principle},
+discovered in 1927 by Werner Heisenberg.
+\par
+Because of the wave–particle duality, the act of measurement introduces an uncontrollable
+disturbance in the system being measured. We started with particles having a
+precise value of \(p_{x}\) (zero). By imposing the slit, we measured the \(x\) coordinate of the particles
+to an accuracy \(w\), but this measurement introduced an uncertainty into the \(p_{x}\) values
+of the particles. The measurement changed the state of the system.
+
+\section{The Time-Dependent Schrödinger Equation}
+Classical mechanics applies only to macroscopic particles. For microscopic “particles”
+we require a new form of mechanics, called \textbf{quantum mechanics}. We now consider some
+of the contrasts between classical and quantum mechanics. For simplicity a one-particle,
+one-dimensional system will be discussed.
+\par
+In classical mechanics the motion of a particle is governed by Newton’s second law:
+\begin{equation}
+    F = ma = m\frac{d^2x}{dt^2}
+\end{equation}
+where \(F\) is the force acting on the particle, \(m\) is its mass, and \(t\) is the time; \(a\) is the acceleration,
+given by \(a = d\nu/dt = (d/dt)(dx/dt) = d^2x/dt^2\), where \(v\) is the velocity.
+Equation (8) contains the second derivative of the coordinate \(x\) with respect to time. To
+solve it, we must carry out two integrations. This introduces two arbitrary constants \(c_{1}\) and
+\(c_{2}\) into the solution, and
+\begin{equation}
+    x = g(t, c_{1}, c_{2})
+\end{equation}
+where \(g\) is some function of time. We now ask: What information must we possess at a
+given time \(t_{0}\) to be able to predict the future motion of the particle? If we know that at \(t_{0}\)
+the particle is at point \(x_{0}\), we have
+\begin{equation}
+    x_{0} = g(t_{0}, c_{1}, c_{2})
+\end{equation}
+Since we have two constants to determine, more information is needed. Differentiating (9), we have
+\[
+    \frac{dx}{dt}=\nu=\frac{d}{dt}g(t, c_{1}, c_{2})
+\]
+If we also know that at time \(t_{0}\) the particle has velocity \(\nu_{0}\), then we have the additional
+relation
+\begin{equation}
+    \nu_{0}=\frac{d}{dt}g(t, c_{1}, c_{2})|_{t=t_{2}}
+\end{equation}
+We may then use (10) and (11) to solve for \(c_{1}\) and \(c_{2}\) in terms of \(x_{0}\) and \(\nu_{0}\). Knowing \(c_{1}\) and \(c_{2}\), we can use Eq. (9) to predict the exact future motion of the particle.
+\par
+As an example of Eqs. (8) to (11), consider the vertical motion of a particle in
+the earth’s gravitational field. Let the \(x\) axis point upward. The force on the particle is
+downward and is \(F = -mg\), where g is the gravitational acceleration constant. Newton’s
+second law (8) is \(-mg = md^2x/dt^2\), so \(d^2x/dt^2 = -g\). A single integration gives
+\(dx/dt = -gt + c_{1}\). The arbitrary constant \(c_{1}\) can be found if we know that at time \(t_{0}\) the particle had velocity \(v_{0}\). Since \(v = dx/dt\), we have 
+\(v_{0} = -gt_{0} + c_{1}\) and \(c_{1} = v_{0} + gt_{0}\).
+Therefore, \(dx/dt = -gt + gt_{0} + v_{0}\). Integrating a second time, we introduce another arbitrary
+constant \(c_{2}\), which can be evaluated if we know that at time \(t_{0}\) the particle had
+position \(x_{0}\). We find \(x = x_{0} - \frac{1}{2}g(t - t_{0})^2 + v_{0}(t - t_{2})\). Knowing \(x_{0}\) and \(v_{0}\)
+at time \(t_{0}\), we can predict the future position of the particle.
+\par
+The classical-mechanical potential energy \(V\) of a particle moving in one dimension is
+defined to satisfy
+\begin{equation}
+    \frac{\partial{V(x,t)}}{\partial{x}}=-F(x,t)
+\end{equation}
+For example, for a particle moving in the earth’s gravitational field, \(\partial{V}/\partial{x} = -F = mg\) integration gives \(V = mgx + c\), where \(c\) is an arbitrary constant. We are free to set
+the zero level of potential energy wherever we please. Choosing \(c= 0\), we have \(V = mgx\)
+as the potential-energy function.
+\par
+The word state in classical mechanics means a specification of the position and velocity
+of each particle of the system at some instant of time, plus specification of the forces acting on the particles. According to Newton’s second law, given the state of a system at
+any time, its future state and future motions are exactly determined, as shown by Eqs.
+(9)–(11).The impressive success of Newton’s laws in explaining planetary motions led
+many philosophers to use Newton’s laws as an argument for philosophical determinism.
+\begin{wrapfigure}{r}{0.25\textwidth} %this figure will be at the right
+    \centering
+    \includegraphics[width=0.25\textwidth]{Youtube/Pierre-Simon_Laplace.jpg}
+\end{wrapfigure}
+The mathematician and astronomer Laplace (1749–1827) assumed that the universe consisted
+of nothing but particles that obeyed Newton’s laws. Therefore, given the state of the
+universe at some instant, the future motion of everything in the universe was completely
+determined. A super-being able to know the state of the universe at any instant could, in
+principle, calculate all future motions. \par
+Given exact knowledge of the present state of a classical-mechanical system, we can
+predict its future state. However, the Heisenberg uncertainty principle shows that we cannot
+determine simultaneously the exact position and velocity of a microscopic particle, so
+the very knowledge required by classical mechanics for predicting the future motions of
+a system cannot be obtained. We must be content in quantum mechanics with something
+less than complete prediction of the exact future motion.
+\par
+Our approach to quantum mechanics will be to \emph{postulate} the basic principles and then
+use these postulates to deduce experimentally testable consequences such as the energy
+levels of atoms. To describe the \textbf{state} of a system in quantum mechanics, we postulate
+the existence of a function \(\Psi\) of the particles’ coordinates called the \textbf{state function} or
+\textbf{wave function} (often written as \textbf{wavefunction}). Since the state will, in general, change
+with time, \(\Psi\) is also a function of time. For a one-particle, one-dimensional system, we
+have \(\Psi = \Psi(x,t)\). The wave function contains all possible information about a system,
+so instead of speaking of “the state described by the wave function \(\Psi\),” we simply say
+“the state \(\Psi\).” Newton’s second law tells us how to find the future state of a classical-mechanical
+system from knowledge of its present state. To find the future state of a
+quantum-mechanical system from knowledge of its present state, we want an equation
+that tells us how the wave function changes with time. For a one-particle, one-dimensional
+system, this equation is postulated to be
+\begin{equation}
+    -\frac{\hbar}{i}\frac{\partial\Psi(x,t)}{\partial{t}}=-\frac{\hbar^2}{2m}\frac{\partial^2\Psi(x,t)}{\partial x^2}+V(x,t)\Psi(x,t)
+\end{equation}
+where the constant \(\hbar\) (\textbf{h-bar}) is defined as
+\begin{equation}
+    \hbar=\frac{h}{2\pi}
+\end{equation}
+\par
+
+The concept of the wave function and the equation governing its change with time
+were discovered in 1926 by the Austrian physicist Erwin Schrödinger (1887–1961). In
+this equation, known as the \textbf{time-dependent Schrödinger equation} (or the \textbf{Schrödinger wave equation}), \(i = \sqrt{-1}\), \(m\) is the mass of the particle, and \(V(x,t)\) is the potential energy function of the system.
+\begin{wrapfigure}{l}{0.25\textwidth} %this figure will be at the left
+    \centering
+    \includegraphics[width=0.25\textwidth]{Youtube/headshot.jpeg}
+\end{wrapfigure}
+\par
+The time-dependent Schrödinger equation contains the first derivative of the wave
+function with respect to time and allows us to calculate the future wave function (state) at
+any time, if we know the wave function at time \(t_{0}\).
+\par
+The wave function contains all the information we can possibly know about the system
+it describes. What information does \(\Psi\) give us about the result of a measurement of
+the \(x\) coordinate of the particle? We cannot expect \(\Psi\) to involve the definite specification
+of position that the state of a classical-mechanical system does. The correct answer to this
+question was provided by Max Born shortly after Schrödinger discovered the Schrödinger
+equation. Born postulated that for a one-particle, one-dimensional system,
+\begin{equation}
+    |\Psi(x,t)|^2dx
+\end{equation}
+gives the \emph{probability} at time \(t\) of finding the particle in the region of the \(x\) axis lying
+between \(x\) and \(x + dx\). In (15) the bars denote the absolute value and \(dx\) is an
+infinitesimal length on the \(x\) axis. The function \(|\Psi(x,t)|^2\) is the \textbf{probability density}
+for finding the particle at various places on the \(x\) axis. For example, suppose that at some particular time \(t_{0}\) the particle is in a
+state characterized by the wave function \(ae^{bx^2}\), where \(a\) and \(b\) are real constants. If
+we measure the particle’s position at time \(t_{0}\), we might get any value of \(x\), because the
+probability density \(a^2e^{bx^2}\) is nonzero everywhere. Values of \(x\) in the region around
+\(x = 0\) are more likely to be found than other values, since \(|\Psi|^2\) is a maximum at the origin in this case.
+\par
+To relate \(|\Psi|^2\) to experimental measurements, we would take many identical non-interacting systems, each of which was in the same state \(\Psi\). Then the particle’s position
+in each system is measured. If we had \(n\) systems and made \(n\) measurements, and if \(dn_{x}\) denotes the number of measurements for which we found the particle between \(x\) and \(x + dx\), then \(dn_{x}/n\) is the probability for finding the particle between \(x\) and \(x + dx\). Thus
+\[
+    \frac{dn_{x}}{n}=|\Psi|^2dx
+\]
+and a graph of \((1/n)dn_{x}/dx\) versus \(x\) gives the probability density \(|\Psi|^2\) as a function
+of \(x\). It might be thought that we could find the probability-density function by taking
+one system
+that was in the state \(\Psi\) and repeatedly measuring the particle’s position. This
+procedure is wrong because the process of measurement generally changes the state
+of a system.
+\par
+Quantum mechanics is \emph{statistical} in nature. Knowing the state, we cannot predict the
+result of a position measurement with certainty; we can only predict the \emph{probabilities} of
+various possible results. The Bohr theory of the hydrogen atom specified the precise path
+of the electron and is therefore not a correct quantum-mechanical picture.
+\par
+Quantum mechanics does not say that an electron is distributed over a large region of
+space as a wave is distributed. Rather, it is the probability patterns (wave functions) used
+to describe the electron’s motion that behave like waves and satisfy a wave equation.
+\par
+Quantum mechanics provides the law of motion for microscopic particles. Experimentally,
+macroscopic objects obey classical mechanics. Hence for quantum mechanics to be a
+valid theory, it should reduce to classical mechanics as we make the transition from microscopic
+to macroscopic particles. Quantum effects are associated with the de Broglie wavelength
+\(\lambda = h/m\nu\). Since \(h\) is very small, the de Broglie wavelength of macroscopic objects
+is essentially zero. Thus, in the limit \(\lambda\longrightarrow 0\), we expect the time-dependent Schrödinger equation to reduce to Newton’s second law.
+\par
+A similar situation holds in the relation between special relativity and classical mechanics.
+In the limit \(\nu/c\longrightarrow 0\), where \(c\) is the speed of light, special relativity reduces to classical
+mechanics. The form of quantum mechanics that we will develop will be nonrelativistic. A
+complete integration of relativity with quantum mechanics has not been achieved.
+\par
+Historically, quantum mechanics was first formulated in 1925 by Heisenberg, Born,
+and Jordan using matrices, several months before Schrödinger’s 1926 formulation using
+differential equations. Schrödinger proved that the Heisenberg formulation (called \textbf{matrix mechanics}) is equivalent to the Schrödinger formulation (called \textbf{wave mechanics}). In 1926, Dirac and Jordan, working independently, formulated quantum mechanics in an abstract version called \emph{transformation theory} that is a generalization of matrix mechanics
+and wave mechanics. In 1948, Feynman devised the \emph{path integral} formulation
+of quantum mechanics.
+
+\section{The Time-Independent Schrödinger Equation}
+The time-dependent Schrödinger equation (13) is formidable looking. Fortunately,
+many applications of quantum mechanics to chemistry do not use this equation. Instead,
+the simpler time-independent Schrödinger equation is used. We now derive the time-independent from the time-dependent Schrödinger equation for the one-particle,
+one-dimensional case.
+\par
+We begin by restricting ourselves to the special case where the potential energy \(V\)
+is not a function of time but depends only on \(x\). This will be true if the system experiences
+no time-dependent external forces. The time-dependent Schrödinger equation
+reads
+\begin{equation}
+    -\frac{\hbar}{i}\frac{\partial\Psi(x,t)}{\partial{t}}=-\frac{\hbar^2}{2m}\frac{\partial^2\Psi(x,t)}{\partial x^2}+V(x)\Psi(x,t)
+\end{equation}
+We now restrict ourselves to looking for those solutions of (16) that can be written as the
+product of a function of time and a function of \(x\):
+\begin{equation}
+    \Psi(x,t) = f(t)\psi(x)
+\end{equation}
+Capital psi is used for the time-dependent wave function and lowercase psi for the factor
+that depends only on the coordinate \(x\). States corresponding to wave functions of the form
+(17) possess certain properties that make them of great interest. Taking partial derivatives of (1.17), we have
+\[
+\frac{\partial\Psi(x,t)}{\partial t}=\frac{df(t)}{dt}\psi(x), \frac{\partial^2\Psi(x,t)}{\partial x^2}=f(t)\frac{d^2\pis(x)}{dx^2}
+\]
+Substitution into (16) gives
+\begin{equation}
+    \begin{array}{1}
+           -\frac{\hbar}{i}\frac{df(t)}{dt}\psi(x)=-\frac{\hbar^2}{2m}f(t)\frac{d^2\psi(x)}{dx^2}+ V(x)f(t)\psi(x)
+    \\
+    \\
+    -\frac{\hbar}{i}\frac{1}{f(t)}\frac{df(t)}{dt}=-\frac{-\hbar^2}{2m}\frac{1}{\psi(x)}\frac{d^2\psi(x)}{dx^2}+ V(x)
+    \end{array}
+\end{equation}
+where we divided by \(f\psi\). In general, we expect the quantity to which each side of (18)
+is equal to be a certain function of \(x\) and \(t\). However, the right side of (18) does not
+depend on \(t\), so the function to which each side of (18) is equal must be independent
+of \(t\). The left side of (18) is independent of \(x\), so this function must also be independent
+of \(x\). Since the function is independent of both variables, \(x\) and \(t\), it must be a constant.
+We call this constant \(E\).
+\par
+Equating the left side of (18) to \(E\), we get
+\[
+\frac{df(t)}{f(t)}=-\frac{iE}{\hbar}dt
+\]
+Integrating both sides of this equation with respect to \(t\), we have
+\[
+lnf(t) = -iEt/\hbar + C
+\]
+where \(C\) is an arbitrary constant of integration. Hence
+\[
+f(t) = e^Ce^{-iEt/\hbar} = Ae^{-iEt/\hbar}
+\]
+where the arbitrary constant \(A\) has replaced \(e^C\). Since A can be included as a factor in the
+function \(\psi(x)\) that multiplies \(f(t)\) in (17), A can be omitted from \(f(t)\). Thus
+\[
+f(t) = e^{-iEt/\hbar}
+\]
+Equating the right side of (18) to \(E\), we have
+\begin{equation}
+    -\frac{\hbar^2}{2m}\frac{d^2\psi(x)}{dx^2}+ V(x)\psi(x) = E\psi(x)
+\end{equation}
+Equation (19) is the \textbf{time-independent Schrödinger equation} for a single particle of
+mass \(m\) moving in one dimension.
+\par
+What is the significance of the constant \(E\)? Since \(E\) occurs as \([ \,E - V(x)] \,\) in (19),
+\(E\) has the same dimensions as \(v\), so \(E\) has the dimensions of energy. In fact, we postulate
+that \(E\) is the energy of the system. Thus, for cases where the potential energy is a function of \(X\)
+only, there exist wave functions of the form
+\begin{equation}
+    \Psi(x,t) = e^{-iEt/\hbar}\psi(x)
+\end{equation}
+and these wave functions correspond to states of constant energy \(E\). Much of our attention
+in the next few chapters will be devoted to finding the solutions of (19) for various
+systems.
+\par
+The wave function in (20) is complex, but the quantity that is experimentally
+observable is the probability density \(|\Psi(x,t)|^2\). The square of the absolute value of a
+complex quantity is given by the product of the quantity with its complex conjugate,
+the complex conjugate being formed by replacing \(i\) with \(–i\) wherever it occurs. Thus
+\begin{equation}
+    |\Psi|^2 = \Psi^*\Psi
+\end{equation}
+where the star denotes the complex conjugate. For the wave function (1.20),
+\begin{equation}
+    \begin{array}{cc}
+        |\Psi(x,t)|^2 = [ \,e^{-iEt/\hbar}\psi(x)] \,^2e^{-iEt/\hbar}\psi(x)\\ \\
+                      = e^{-iEt/\hbar}\psi(x)^*e^{-iEt/\hbar}\psi(x)\\ \\
+                       = e^0\psi(x)^*\psi(x) = \psi(x)^*\psi(x)\\ \\
+        |\Psi(x,t)|^2 = |\psi(x)|^2            
+    \end{array}
+\end{equation}
+In deriving (22), we assumed that \(E\) is a real number, so \(E = E^*\).
+\par
+Hence for states of the form (20), the probability density is given by \(|\Psi(x)|^2\) and
+does not change with time. Such states are called \textbf{stationary states}. Since the physically
+significant quantity  \(|\Psi(x,t)|^2\), and since for stationary states  \(|\Psi(x)|^2 = |\psi(x)|^2\), the
+function \(\psi(x)\) is often called the \textbf{wave function}, although the complete wave function of
+a stationary state is obtained by multiplying \(\psi(x)\) by \(e^{-iEt/\hbar}\). The term \emph(stationary state)
+should not mislead the reader into thinking that a particle in a stationary state is at rest.
+What is stationary is the probability density \(|\Psi(x)|^2\), not the particle itself.
+\clearpage
+\par
+We will be concerned mostly with states of constant energy (stationary states) and
+hence will usually deal with the time-independent Schrödinger equation (19). For
+simplicity we will refer to this equation as “the Schrödinger equation.” Note that the
+Schrödinger equation contains \empth{two} unknowns: the allowed energies \(E\) and the allowed
+wave functions \(\psi\). To solve for two unknowns, we need to impose additional conditions
+(called boundary conditions) on \(\psi\) besides requiring that it satisfy (19). The boundary
+conditions determine the allowed energies, since it turns out that only certain values of
+\(E\) allow \(\psi\) to satisfy the boundary conditions.
+
+\section{Probability}
+Probability plays a fundamental role in quantum mechanics. This section reviews the
+mathematics of probability.
+\par
+There has been much controversy about the proper definition of probability. One definition
+is the following: If an experiment has \(n\) equally probable outcomes, \(m\) of which are
+favorable to the occurrence of a certain event \(A\), then the probability that \(A\) occurs is \(m/n\).
+Note that this definition is circular, since it specifies equally \emph(probable) outcomes when
+\emph{probability} is what we are trying to define. It is simply assumed that we can recognize
+equally probable outcomes. An alternative definition is based on actually performing the
+experiment many times. Suppose that we perform the experiment \(N\) times and that in \(M\) of
+these trials the event \(A\) occurs. The probability of \(A\) occurring is then defined as
+\[
+\lim_{x \to \infty} \frac{M}{N}
+\]
+Thus, if we toss a coin repeatedly, the fraction of heads will approach \(1/2\) as we increase
+the number of tosses.
+\par
+For example, suppose we ask for the probability of drawing a heart when a card is
+picked at random from a standard \(52\)-card deck containing 13 hearts. There are \(52\) cards
+and hence \(52\) equally probable outcomes. There are \(13\) hearts and hence \(13\) favorable outcomes.
+Therefore, \(m/n = 13/52 = 1/4\). The probability for drawing a heart is \(1/4\).
+\par
+In quantum mechanics we must deal with probabilities involving a continuous variable,
+for example, the \(x\)coordinate. It does not make much sense to talk about the probability
+of a particle being found \(at\) a particular point such as \(x = 0.5000\)..., since there
+are an infinite number of points on the \(x\) axis, and for any finite number of measurements
+we make, the probability of getting \emph{exactly} \(x = 0.5000\)... is vanishingly small. Instead we
+talk of the probability of finding the particle in a tiny interval of the \(x\)x axis lying between
+\(x\) and \(x + dx\), \(dx\) being an infinitesimal element of length. This probability will naturally
+be proportional to the length of the interval, \(dx\), and will vary for different regions of the
+\(x\) axis. Hence the probability that the particle will be found between \(x\) and \(x + dx\) is equal
+to \(g(x)dx\), where \(g(x)\) is some function that tells how the probability varies over the \(x\)
+axis. The function \(g(x)\) is called the \textbf{probability density}, since it is a probability per unit
+length. Since probabilities are real, nonnegative numbers, \(g(x)\) must be a real function
+that is everywhere nonnegative. The wave function \(\Psi\) can take on negative and complex
+values and is not a probability density. Quantum mechanics postulates that the probability
+density is \(|\Psi|^2\) [Eq. (15)].
+\par
+What is the probability that the particle lies in some finite region of space \(a\leq x \leq b\)?
+To find this probability, we sum up the probabilities \(|\Psi|^2dx\) of finding the particle in all the infinitesimal regions lying between \(a\) and \(b\). This is just the definition of the definite
+integral
+\begin{equation}
+    \int_{a}^b |\Psi|^2dx = Pr(a\leq x \leq b)
+\end{equation}
+where \(Pr\) denotes a probability. \(A\) probability of \(1\) represents certainty. Since it is certain
+that the particle is somewhere on the \(x\) axis, we have the requirement
+\begin{equation}
+    \int_{-\infty}^\infty |\Psi|^2dx
+\end{equation}
+When \(\Psi\) satisfies (24), it is said to be \textbf{normalized}. For a stationary state, \(|\Psi|^2 = |\psi|^2\)
+and  \(\int_{-\infty}^\infty |\psi|^2dx = 1\).
+
+\section{Summary}
+
+The state of a quantum-mechanical system is described by a state function or wave function
+\(\Psi\), which is a function of the coordinates of the particles of the system and of the time.
+The state function changes with time according to the time-dependent Schrödinger equation,
+which for a one-particle, one-dimensional system is Eq. (13). For such a system, the
+quantity \(|\Psi(x,t)|^2\) gives the probability that a measurement of the particle’s position at time \(t\) will find it between \(x\) and \(x + dx\). The state function is normalized according to
+\(\int_{-\infty}^\infty |\psi|^2dx = 1\). If the system’s potential-energy function does not depend on \(t\), then the
+system can exist in one of a number of stationary states of fixed energy. For a stationary
+state of a one-particle, one-dimensional system, \(\Psi(x,t) = e^{-iEt/\hbar}\psi(x)\), where the time-independent
+wave function \(\psi(x)\) is a solution of the time-independent Schrödinger equation
+(19).
+
+
+\clearpage
+\section*{References}
+{American Institue of Physics, Atop the Physics Wave,viewed 2 March 2021, https://history.aip.org/exhibits/rutherford/sections/atop-physics-wave.html}\\
+\\
+{Anne Helmenstine 2020, Bohr Model of the Atom, viewed 6 March 2021, 
+\\https://sciencenotes.org/bohr-model-of-the-atom/}\\
+\\
+{National Center for Biotechnology Information 2021, PubChem Compound Summary for CID 102589972, CID 102589972, viewed 10 March 2021,
+\\https://pubchem.ncbi.nlm.nih.gov/compound/102589972}\\
+\\
+{Physics Today 2018, Louis de Broglie, viewed 6 March 2021,
+\\https://physicstoday.scitation.org/do/10.1063/pt.6.6.20180815a/full/>}\\
+\\
+\\
+{Atkins, P., and R. Friedman, \emph{Molecular Quantum Mechanics},5th ed., Oxford University Press, 2011.}\\
+\\
+{Atkins, P., and J. De Paula, \emph{Physical Chemistry}, 8th ed., Oxford University Press, 2006.}\\
+\\
+{Levine, I. N., \emph{Physical Chemistry}, 6th ed., McGraw-Hill, 2009.}\\
+\\
+{Levine, I. N., \emph{Quantum Chemistry}, 7th ed., Pearson, 2014.}\\
+
+\end{document}
