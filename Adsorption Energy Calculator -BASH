@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Calculate the adsorption energy of a Ion on a surface.
+
+# Input parameters:
+#   - `surface_and_ion_energy`: The energy of the surface and ion.
+#   - `pure_surface_energy`: The energy of the pure surface.
+#   - `ion_energy`: The energy of the ion.
+
+# Output parameters:
+#   - `adsorbed_energy`: The adsorption energy of the Ion on the surface.
+
+# Get the input parameters from the user.
+echo "Enter the surface and ion energy:"
+read surface_and_ion_energy
+
+echo "Enter the pure surface energy:"
+read pure_surface_energy
+
+echo "Enter the ion energy:"
+read ion_energy
+
+# Calculate the adsorption energy.
+adsorbed_energy=$(echo "($surface_and_ion_energy - $pure_surface_energy - $ion_energy)" | bc)
+
+# Print the adsorption energy.
+echo "The adsorption energy is $adsorbed_energy eV."
